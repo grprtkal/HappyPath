@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/sign-up', {
+        templateUrl: 'views/sign-up.html', 
+        controller: 'SignupCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
