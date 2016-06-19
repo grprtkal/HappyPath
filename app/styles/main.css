@@ -1,3 +1,22 @@
+body {
+  padding: 0;
+}
+
+.form-control {
+  margin: 0 0 10px 0;
+}
+
+/* Remove once facebook authentication is added */ 
+.bg-fb-blue {
+  color: #ffffff;
+  background-color: #337ab7;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+
+/* YEOMAN */
+/* Everything but the jumbotron gets side spacing for mobile first views */
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -5,11 +24,6 @@
   padding: 0.2em 0;
 }
 
-body {
-  padding: 0;
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
 .footer {
