@@ -14,6 +14,8 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    
   </head>
   <body ng-app="happyPathApp">
     <!--[if lt IE 7]>
@@ -87,5 +89,26 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
+  
+      <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCMxhhsavIAm2PbQor5A_Z6rnHrehHQXes",
+        authDomain: "project-2563609008295793326.firebaseapp.com",
+        databaseURL: "https://project-2563609008295793326.firebaseio.com",
+        storageBucket: "project-2563609008295793326.appspot.com",
+        messagingSenderId: "582547351553"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </body>
 </html>

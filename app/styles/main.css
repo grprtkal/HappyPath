@@ -1,19 +1,37 @@
 body {
+  font-family: 'Roboto', sans-serif;
   padding: 0;
+  background-color: #fafafa;
 }
 
-.form-control {
-  margin: 0 0 10px 0;
+.navbar-default {
+  border: none;
+  margin: 0;
 }
 
-/* Remove once facebook authentication is added */ 
-.bg-fb-blue {
-  color: #ffffff;
-  background-color: #337ab7;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
+.jumbotron {
+  background-color: #fafafa; 
 }
 
+.jumbotron h1 {
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+.form-control.question {
+  width: 330px;
+  border-radius: 0;
+}
+
+.btn-primary {
+  background-color: #0d1f0f; 
+  border-radius: 0px;
+  border-color: #0d1f0f
+}
+
+.btn.btn-primary:hover {
+  background-color: #0d1f0f; 
+}
 
 /* YEOMAN */
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -48,7 +66,6 @@ body {
 .footer {
   padding-top: 19px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
 }
 
 .container-narrow > hr {
@@ -56,17 +73,17 @@ body {
 }
 
 /* Main marketing message and sign up button */
-.jumbotron {
+.container .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  border-radius: 0;
 }
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+.container .jumbotron .btn {
+  font-size: 16px;
+  padding: 5px 10px;
 }
-
-.dropdown-menu {
-  left: 35%;
+.questions {
+  text-align: center;
 }
 
 /* Supporting marketing content */

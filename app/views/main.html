@@ -1,12 +1,14 @@
 <div class="jumbotron">
-  <h1>Find your mentor</h1>
-  <p>We have mentors who can answer questions on any stage of your career.</p>
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Management<span class="caret"></span></button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><a href="#">Executive Leadership</a></li>
-      <li><a href="#">Maternal Leave</a></li>
-      <li><a href="#">Negotiation</a></li>
-    </ul>
-  </div>
+  <h1>Ask the hard questions</h1>
+  <p>Lorem ipsum dolor sit amet, erant labores ad est.</p>
+  <form class="form-inline">
+    <div class="form-group"> 
+        <label for="question-input"></label>
+        <input type="text" class="form-control question"></input>
+    </div> 
+    <button type="submit" class="btn btn-primary">ask</button>
+  </form>
+</div>
+<div class="questions" ng-repeat="question in questions">
+  <p>{{question.title}}</p>
 </div>
