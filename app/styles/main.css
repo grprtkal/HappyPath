@@ -4,6 +4,14 @@ body {
   background-color: #fafafa;
 }
 
+p {
+  margin: 0;
+}
+
+hr {
+  margin: 5px;
+  width: 75%;
+}
 .navbar-default {
   border: none;
   margin: 0;
@@ -82,8 +90,16 @@ body {
   font-size: 16px;
   padding: 5px 10px;
 }
-.questions {
+.questionsandanswers {
   text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #d9d7d6;
+  margin: 15px;
+  padding: 10px;
+}
+.questions {
+  font-size: 18px;
+  font-weight: 900;
 }
 
 /* Supporting marketing content */
