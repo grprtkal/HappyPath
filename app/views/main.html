@@ -9,6 +9,7 @@
     <button type="submit" class="btn btn-primary">ask</button>
   </form>
 </div>
-<div class="questions" ng-repeat="question in questions">
-  <p>{{question.title}}</p>
+<div class="questions" ng-repeat="questionsandAnswers in questionsandanswersArray">
+  <p>{{questionsandAnswers.question}}</p>
+  <p>{{questionsandAnswers.answer}}</p>
 </div>
