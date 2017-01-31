@@ -21,6 +21,10 @@ angular.module("happyPathApp")
     		return answersArray;
     	}
 
+        factory.addQuestions = function(param1, param2) {
+            questionsRef.push({"submitted": param1, "title": param2}); 
+        }
+
     	return factory; 
 
 	}

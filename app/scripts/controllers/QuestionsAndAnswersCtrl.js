@@ -9,6 +9,7 @@ angular
   	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory) {
   		var vm = this; 
   		vm.onlyQuestionsWithAnswers = [];
+  		vm.addNewQuestion = addNewQuestion; 
 
   		activate(); 
 
@@ -52,6 +53,11 @@ angular
 						}
   					}
   				})	
+  		}
+
+  		function addNewQuestion(param1, param2) {
+  			QuestionsAndAnswersFactory
+  				.addQuestions(param1, param2); 
   		}
   	}
 
