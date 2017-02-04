@@ -26,7 +26,6 @@ angular.module("happyPathApp")
         }
 
     	return factory; 
-
 	}
 
 

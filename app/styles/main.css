@@ -4,6 +4,11 @@ body {
   background-color: #fafafa;
 }
 
+h2 {
+  font-size: 22px;
+  text-align: center; 
+}
+
 p {
   margin: 0;
 }
@@ -12,9 +17,35 @@ hr {
   margin: 5px;
   width: 75%;
 }
+
 .navbar-default {
   border: none;
   margin: 0;
+}
+
+.login {
+  float: right;
+}
+
+.modal-content {
+  border-radius: 0;
+}
+
+.modal-header {
+  padding: 0 15px;
+}
+
+.modal-body {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.fb-login-wrapper {
+  display: inline-block;
+}
+
+.close {
+  font-size: 14px;
 }
 
 .jumbotron {
@@ -34,7 +65,8 @@ hr {
 .btn-primary {
   background-color: #0d1f0f; 
   border-radius: 0px;
-  border-color: #0d1f0f
+  border-color: #0d1f0f; 
+  padding: 15px;
 }
 
 .btn.btn-primary:hover {

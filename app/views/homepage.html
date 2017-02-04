@@ -1,3 +1,23 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">x</span>
+        </button> 
+        <h2>Sign In</h2>
+      </div> 
+      <div class="modal-body">
+        <div class="fb-login-wrapper" ng-click="questionsandanswers.loginFacebook()">
+          <a class="btn btn-block btn-social btn-sm btn-facebook">
+            <i class="fa fa-facebook"></i>
+            Continue with Facebook
+          </a>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div> 
 <div class="jumbotron">
   <h1>Ask the hard questions</h1>
   <p>Lorem ipsum dolor sit amet, erant labores ad est.</p>
@@ -13,4 +33,4 @@
   <div class="questionsandanswers" ng-repeat="questionandanswer in questionsandanswers.onlyQuestionsWithAnswers">
       <p class="questions">{{questionandanswer.questionTitle}}</p>
       <p class="answers">{{questionandanswer.answerBody}}</p>
-  </div>
+</div>

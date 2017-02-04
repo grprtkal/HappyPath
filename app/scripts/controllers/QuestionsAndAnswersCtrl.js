@@ -4,12 +4,13 @@ angular
 	.module('happyPathApp')
   	.controller('QuestionsAndAnswersCtrl', QuestionsAndAnswersController); 
 
-  	QuestionsAndAnswersController.$inject = ["$scope", "QuestionsAndAnswersFactory"]
+  	QuestionsAndAnswersController.$inject = ["$scope", "QuestionsAndAnswersFactory", "LoginFactory"]
   
-  	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory) {
-  		var vm = this; 
+  	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory, LoginFactory) {
+      var vm = this; 
   		vm.onlyQuestionsWithAnswers = [];
   		vm.addNewQuestion = addNewQuestion; 
+      vm.loginFacebook = loginFacebook; 
 
   		activate(); 
 
@@ -25,16 +26,14 @@ angular
   					for(var i=0; i<data.length; i++) {
   						var questionObject = data[i];
 
-		 				if("answers" in questionObject) {
-		 					var questionTitle = questionObject["title"];
-		 					var answerKey =  Object.keys(questionObject["answers"]).toString();
+  		 				if("answers" in questionObject) {
+  		 					var questionTitle = questionObject["title"];
+  		 					var answerKey =  Object.keys(questionObject["answers"]).toString();
 
-		 					matchQuestionsWithAnswers(questionTitle, answerKey); 
-		 				}
+  		 					matchQuestionsWithAnswers(questionTitle, answerKey); 
+  		 				}
   					}
-  				
   				return vm.onlyQuestionsWithAnswers; 
-  				
   				})
   		}
 
@@ -45,12 +44,12 @@ angular
   				.then(function(data) {
   					for(var i=0; i<data.length; i++) {
   						var answerId = data[i]['$id']; 
-						var answerBody = data[i]['body']; 
-						var questionTitle = param1; 
+						  var answerBody = data[i]['body']; 
+						  var questionTitle = param1; 
   				
-						if(param2 == answerId) {
-							vm.onlyQuestionsWithAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
-						}
+  						if(param2 == answerId) {
+  							vm.onlyQuestionsWithAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
+  						}
   					}
   				})	
   		}
@@ -59,6 +58,12 @@ angular
   			QuestionsAndAnswersFactory
   				.addQuestions(param1, param2); 
   		}
+
+      function loginFacebook() {
+        LoginFactory
+          .facebookAuthentication();
+      }
+
   	}
 
 
