@@ -16,11 +16,12 @@ angular
 
   		function activate() {
   			getQuestionsWithAnswers(); 
+        showUserProfile(); 
   		}
 
   		function getQuestionsWithAnswers(){
   			QuestionsAndAnswersFactory
-  				.getQuestions()
+  			 	.getQuestions()
   				.$loaded()
   				.then(function(data) {
   					for(var i=0; i<data.length; i++) {
@@ -62,6 +63,18 @@ angular
       function loginFacebook() {
         LoginFactory
           .facebookAuthentication();
+      }
+
+      function showUserProfile() {
+        var userProfile = LoginFactory.getUserProfileFromProvider(); 
+
+        if(userProfile) {
+          vm.userProfile = userProfile; 
+          
+          return vm.userProfile; 
+        } else {
+          console.log("do something when userprofile does not exist");
+        }
       }
 
   	}

@@ -4,23 +4,40 @@ angular.module("happyPathApp")
 	.factory("LoginFactory", LoginFactory); 
 
     function LoginFactory() {
-        var provider = new firebase.auth.FacebookAuthProvider();
+        var facebookProvider = new firebase.auth.FacebookAuthProvider();
+        var user = firebase.auth().currentUser; 
     	var factory = {}; 
 
     	factory.facebookAuthentication = function() {
             firebase.auth()
-                .signInWithPopup(provider)
-                .then(function(data) {
-                    var token = data["credential"]["accessToken"];
-                    var user = data["user"]; 
+                .signInWithPopup(facebookProvider)
+                .then(function(result) {
+                    var data = {
+                        "token": result["credential"]["accessToken"],
+                        "user": result["user"]
+                    }
+
+                    return data;
                 })
-                .catch(function(error) {
-                    var errorCode = error["code"];
-                    var errorMessage = error["message"];
-                    var email = error["email"];
-                    var credential = error["credential"];
+                .catch(function(err) {
+                    var error = {
+                        "errorCode":  err["code"], 
+                        "errorMessage": err["message"], 
+                        "email": err["email"], 
+                        "credential": err["credential"]
+                    }
+
+                    return error; 
                 });
     	}
+
+        factory.getUserProfileFromProvider = function() {
+            if(user !=null) {
+                return user["providerData"];                
+            } else {
+                return false; 
+            }
+        }
 
     	return factory; 
 	}
