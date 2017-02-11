@@ -1,13 +1,15 @@
 "use strict";
 
 angular.module("happyPathApp")
-	.factory("LoginFactory", LoginFactory); 
+	.factory("SigninFactory", SigninFactory); 
 
-    function LoginFactory() {
-        var facebookProvider = new firebase.auth.FacebookAuthProvider();
-        var user = firebase.auth().currentUser; 
+    SigninFactory.$inject = ["$firebaseAuth"]; 
+
+    function SigninFactory($firebaseAuth) {
+        var facebookProvider = new firebase.auth.FacebookAuthProvider();  
+        var authStatus = $firebaseAuth();    
     	var factory = {}; 
-
+        
     	factory.facebookAuthentication = function() {
             firebase.auth()
                 .signInWithPopup(facebookProvider)
@@ -31,12 +33,8 @@ angular.module("happyPathApp")
                 });
     	}
 
-        factory.getUserProfileFromProvider = function() {
-            if(user !=null) {
-                return user["providerData"];                
-            } else {
-                return false; 
-            }
+        factory.getAuthStatus = function() { 
+            return authStatus;
         }
 
     	return factory; 

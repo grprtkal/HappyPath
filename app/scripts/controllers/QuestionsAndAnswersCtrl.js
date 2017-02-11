@@ -4,19 +4,19 @@ angular
 	.module('happyPathApp')
   	.controller('QuestionsAndAnswersCtrl', QuestionsAndAnswersController); 
 
-  	QuestionsAndAnswersController.$inject = ["$scope", "QuestionsAndAnswersFactory", "LoginFactory"]
+  	QuestionsAndAnswersController.$inject = ["$scope", "QuestionsAndAnswersFactory", "SigninFactory"]
   
-  	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory, LoginFactory) {
+  	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory, SigninFactory) {
       var vm = this; 
   		vm.onlyQuestionsWithAnswers = [];
   		vm.addNewQuestion = addNewQuestion; 
-      vm.loginFacebook = loginFacebook; 
-
+      vm.signinFacebook = signinFacebook; 
+     
   		activate(); 
 
   		function activate() {
   			getQuestionsWithAnswers(); 
-        showUserProfile(); 
+        checkIfUserSignedIn(); 
   		}
 
   		function getQuestionsWithAnswers(){
@@ -34,6 +34,7 @@ angular
   		 					matchQuestionsWithAnswers(questionTitle, answerKey); 
   		 				}
   					}
+
   				return vm.onlyQuestionsWithAnswers; 
   				})
   		}
@@ -60,23 +61,22 @@ angular
   				.addQuestions(param1, param2); 
   		}
 
-      function loginFacebook() {
-        LoginFactory
+      function signinFacebook() {
+        SigninFactory
           .facebookAuthentication();
       }
 
-      function showUserProfile() {
-        var userProfile = LoginFactory.getUserProfileFromProvider(); 
+      function checkIfUserSignedIn() {
+        SigninFactory
+          .getAuthStatus()
+          .$onAuthStateChanged(function(user) {
+            if(user !== null) {
+              vm.user = user;  
 
-        if(userProfile) {
-          vm.userProfile = userProfile; 
-          
-          return vm.userProfile; 
-        } else {
-          console.log("do something when userprofile does not exist");
-        }
+              return vm.user;   
+            }
+          });    
       }
-
   	}
 
 

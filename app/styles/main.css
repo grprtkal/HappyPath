@@ -23,7 +23,18 @@ hr {
   margin: 0;
 }
 
-.login {
+.signin-avatar-wrapper {
+  float: right;
+  margin: 5px 0;
+}
+
+.signin-avatar {
+  border-radius: 40px;
+  height: 40px;
+  width: 40px;
+}
+
+.signin {
   float: right;
 }
 
@@ -40,7 +51,7 @@ hr {
   padding: 25px 0;
 }
 
-.fb-login-wrapper {
+.fb-signin-wrapper {
   display: inline-block;
 }
 
@@ -64,6 +75,7 @@ hr {
 
 .btn-primary {
   background-color: #0d1f0f; 
+  border: 0; 
   border-radius: 0px;
   border-color: #0d1f0f; 
   padding: 15px;
