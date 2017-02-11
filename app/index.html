@@ -11,11 +11,9 @@
     <link rel="stylesheet" href="styles/main.css">    
   </head>
   <body ng-app="happyPathApp">
-    <div ng-include src="'views/header.html'"></div> 
-    <div class="container">
-      <div ng-view=""></div>
-    </div>
-    <div ng-include src="'views/footer.html'"></div> 
+    <div ui-view="header"></div> 
+    <div class="container"><div ui-view></div></div>
+    <div ui-view="about"></div> 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -38,6 +36,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
     <!-- angular scripts -->
     <script src="scripts/app.js"></script>

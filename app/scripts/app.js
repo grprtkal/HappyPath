@@ -16,20 +16,49 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch', 
-    'firebase'
+    'firebase', 
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/homepage.html',
-        controller: 'QuestionsAndAnswersCtrl', 
-        controllerAs: 'questionsandanswers'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/homepage');
+  
+    $stateProvider
+        .state('homepage', {
+          url: '/',
+          views: {
+            "": {
+              templateUrl: 'views/homepage.html', 
+              controller: 'QuestionsAndAnswersCtrl', 
+              controllerAs: 'questionsandanswers'
+            }, 
+            "header": {
+              templateUrl: "views/header.html", 
+              controller: 'QuestionsAndAnswersCtrl', 
+              controllerAs: 'questionsandanswers'
+            }, 
+            "footer": {
+              templateUrl: "views/footer.html"
+            }
+          }
+        }) 
+        .state('about', {
+          url:'/about', 
+          views: {
+            "": {
+              templateUrl: 'views/about.html'
+            }, 
+            "header": {
+              templateUrl: "views/header.html", 
+              controller: 'QuestionsAndAnswersCtrl', 
+              controllerAs: 'questionsandanswers'
+            }
+          }
+        })
+});
+
+
+
+
+
+
