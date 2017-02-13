@@ -15,9 +15,11 @@
 			      <li class="active"><a href="#/">Home</a></li>
 			      <li><a ng-href="#/about">About</a></li>
 			    </ul>
-	  			<div class="signin-avatar-wrapper" ng-show="questionsandanswers.user">
-	  				<img class="signin-avatar" src="{{questionsandanswers.user.photoURL}}">
-	  			</div>
+			    <div ng-repeat="user in questionsandanswers.user">
+		  			<div class="signin-avatar-wrapper" ng-show="user">
+		  				<img class="signin-avatar" src="{{user.photoURL}}">
+		  			</div>
+		  		</div> 
 	  			<button  ng-show="!questionsandanswers.user" type="button" class="btn btn-primary signin" data-toggle="modal" data-target="#signinModal">Sign In</button>
 			</div>
 		</div>

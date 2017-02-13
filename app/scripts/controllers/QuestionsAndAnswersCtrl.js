@@ -8,10 +8,12 @@ angular
   
   	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory, SigninFactory) {
       var vm = this; 
-  		vm.onlyQuestionsWithAnswers = [];
-  		vm.addNewQuestion = addNewQuestion; 
+      vm.user = [];
+      vm.user.questions = [];
+      vm.allQuestionsWithAnswers = [];
+      vm.addNewQuestion = addNewQuestion; 
       vm.signinFacebook = signinFacebook; 
-     
+
   		activate(); 
 
   		function activate() {
@@ -34,8 +36,7 @@ angular
   		 					matchQuestionsWithAnswers(questionTitle, answerKey); 
   		 				}
   					}
-
-  				return vm.onlyQuestionsWithAnswers; 
+  				return vm.allQuestionsWithAnswers; 
   				})
   		}
 
@@ -50,15 +51,16 @@ angular
 						  var questionTitle = param1; 
   				
   						if(param2 == answerId) {
-  							vm.onlyQuestionsWithAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
+  							vm.allQuestionsWithAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
   						}
   					}
+
   				})	
   		}
 
-  		function addNewQuestion(param1, param2) {
+  		function addNewQuestion(param1, param2, param3) {
   			QuestionsAndAnswersFactory
-  				.addQuestions(param1, param2); 
+          .addQuestions(param1, param2, param3);      
   		}
 
       function signinFacebook() {
@@ -71,12 +73,40 @@ angular
           .getAuthStatus()
           .$onAuthStateChanged(function(user) {
             if(user !== null) {
-              vm.user = user;  
-
-              return vm.user;   
+              showUserInfo(user);
+              showAllQuestionAndAnswersForSignedInUser(user);
+ 
             }
           });    
       }
+
+      function showAllQuestionAndAnswersForSignedInUser(data) {
+          var userUid = data["uid"]; 
+
+          QuestionsAndAnswersFactory
+            .getQuestions()
+            .$loaded()
+            .then(function(data) {
+
+              for(var i=0; i<data.length; i++) {
+                var questionUid = data[i]["uid"]; 
+                var questionTitle = data[i]["title"]; 
+
+                if(userUid === questionUid) {
+                  vm.user.questions.push({"questionTitle": questionTitle}); 
+                }
+              }
+
+              return vm.user.questions; 
+            }) 
+      }
+
+      function showUserInfo(data) {
+        vm.user.push(data); 
+         
+        return vm.user;
+      }
+
   	}
 
 

@@ -1,16 +1,30 @@
-<div class="jumbotron">
-  <h1>Ask the hard questions</h1>
-  <p>Lorem ipsum dolor sit amet, erant labores ad est.</p>
-  <form class="form-inline" ng-submit="questionsandanswers.addNewQuestion('test-user', question)">
-    <div class="form-group"> 
-        <label for="question-input"></label>
-        <input ng-model="question" name="question" type="text" class="form-control question"></input>
-        <input type="submit" value="ask" class="btn btn-primary">
-    </div> 
-   
-  </form>
+<div ng-repeat="user in questionsandanswers.user">
+  <div class="jumbotron">
+    <h1>Ask the hard questions</h1>
+    <h2>Lorem ipsum dolor sit amet, erant labores ad est.</h2>
+    <form class="form-inline" ng-submit="questionsandanswers.addNewQuestion(user.displayName, question, user.uid)">
+      <div class="form-group"> 
+          <label for="question-input"></label>
+          <input ng-model="question" name="question" type="text" class="form-control question"></input>
+          <input type="submit" value="ask" class="btn btn-primary">
+      </div>  
+    </form>
+  </div>
+  <h3>Your Questions</h3>
+  <div class="questionsandanswers" ng-repeat="question in questionsandanswers.user.questions">
+    <div class="questionwrapper">
+      <div class="userprofilewrapper">
+        <img src="{{user.photoURL}}" class="signin-avatar">
+        <p class="username">{{user.displayName}}</p>
+      </div>
+      <p>{{question.questionTitle}}</p>  
+    </div>
+  </div>
 </div>
-  <div class="questionsandanswers" ng-repeat="questionandanswer in questionsandanswers.onlyQuestionsWithAnswers">
-      <p class="questions">{{questionandanswer.questionTitle}}</p>
-      <p class="answers">{{questionandanswer.answerBody}}</p>
+<h3>Community Questions</h3> 
+<div class="questionsandanswers" ng-repeat="questionandanswer in questionsandanswers.allQuestionsWithAnswers">
+  <div class="questionwrapper">
+    <p class="questions">{{questionandanswer.questionTitle}}</p>
+  </div>
+  <p class="answers">{{questionandanswer.answerBody}}</p>
 </div>
