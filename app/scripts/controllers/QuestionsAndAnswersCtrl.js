@@ -9,8 +9,8 @@ angular
   	function QuestionsAndAnswersController($scope, QuestionsAndAnswersFactory, SigninFactory) {
       var vm = this; 
       vm.user = [];
-      vm.user.questions = [];
-      vm.allQuestionsWithAnswers = [];
+      vm.userQuestionsAndAnswers = [];
+      vm.onlyQuestionsWithAnswers = [];
       vm.addNewQuestion = addNewQuestion; 
       vm.signinFacebook = signinFacebook; 
 
@@ -28,16 +28,19 @@ angular
   				.then(function(data) {
   					for(var i=0; i<data.length; i++) {
   						var questionObject = data[i];
+              var questionTitle = questionObject["title"];
+              ;
 
   		 				if("answers" in questionObject) {
-  		 					var questionTitle = questionObject["title"];
-  		 					var answerKey =  Object.keys(questionObject["answers"]).toString();
+                var answerKey =  Object.keys(questionObject["answers"]).toString()
 
   		 					matchQuestionsWithAnswers(questionTitle, answerKey); 
-  		 				}
+  		 				} else {
+                vm.userQuestionsAndAnswers.push({"questionTitle": questionTitle}); 
+              }
   					}
-  				return vm.allQuestionsWithAnswers; 
-  				})
+  				return vm.onlyQuestionsWithAnswers; 
+          })
   		}
 
   		function matchQuestionsWithAnswers(param1, param2) {
@@ -50,9 +53,15 @@ angular
 						  var answerBody = data[i]['body']; 
 						  var questionTitle = param1; 
   				
+              //community questions and answers
   						if(param2 == answerId) {
-  							vm.allQuestionsWithAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
+  							vm.onlyQuestionsWithAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
   						}
+
+              //if user is signed in, show questions and answers
+              if(param2 == answerId && vm.user !== null) {
+                vm.userQuestionsAndAnswers.push({"questionTitle": questionTitle, "answerBody": answerBody});
+              } 
   					}
 
   				})	
@@ -74,31 +83,8 @@ angular
           .$onAuthStateChanged(function(user) {
             if(user !== null) {
               showUserInfo(user);
-              showAllQuestionAndAnswersForSignedInUser(user);
- 
             }
           });    
-      }
-
-      function showAllQuestionAndAnswersForSignedInUser(data) {
-          var userUid = data["uid"]; 
-
-          QuestionsAndAnswersFactory
-            .getQuestions()
-            .$loaded()
-            .then(function(data) {
-
-              for(var i=0; i<data.length; i++) {
-                var questionUid = data[i]["uid"]; 
-                var questionTitle = data[i]["title"]; 
-
-                if(userUid === questionUid) {
-                  vm.user.questions.push({"questionTitle": questionTitle}); 
-                }
-              }
-
-              return vm.user.questions; 
-            }) 
       }
 
       function showUserInfo(data) {

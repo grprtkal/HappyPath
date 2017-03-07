@@ -11,18 +11,19 @@
     </form>
   </div>
   <h3>Your Questions</h3>
-  <div class="questionsandanswers" ng-repeat="question in questionsandanswers.user.questions">
+  <div class="questionsandanswers" ng-repeat="questionandanswer in questionsandanswers.userQuestionsAndAnswers">
     <div class="questionwrapper">
       <div class="userprofilewrapper">
         <img src="{{user.photoURL}}" class="signin-avatar">
         <p class="username">{{user.displayName}}</p>
       </div>
-      <p class="questions">{{question.questionTitle}}</p>  
+      <p class="questions">{{questionandanswer.questionTitle}}</p>
     </div>
+    <p class="answers">{{questionandanswer.answerBody}}</p>  
   </div>
 </div>
 <h3>Community Questions</h3> 
-<div class="questionsandanswers" ng-repeat="questionandanswer in questionsandanswers.allQuestionsWithAnswers">
+<div class="questionsandanswers" ng-repeat="questionandanswer in questionsandanswers.onlyQuestionsWithAnswers">
   <div class="questionwrapper">
     <p class="questions">{{questionandanswer.questionTitle}}</p>
   </div>
